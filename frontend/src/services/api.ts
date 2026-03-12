@@ -10,9 +10,18 @@ export async function uploadPhoto(file: File) {
     const fd = new FormData();
     fd.append("photo", file);
 
-    const res = await fetch(`${BASE}/photos`, { method: "POST", body: fd });
-    if (!res.ok) throw new Error("Upload failed");
-    return res.json();
+    const res = await fetch(`${BASE}/photos`, {
+        method: "POST",
+        body: fd,
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data.error || "Upload failed");
+    }
+
+    return data;
 }
 
 export async function deletePhoto(id: string) {

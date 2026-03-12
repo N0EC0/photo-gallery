@@ -3,4 +3,6 @@ export type Photo = {
     filename: string;
     imageBase64: string;
     uploadDate: string;
+    mimeType: string;
+    imageUrl: string;
 };
