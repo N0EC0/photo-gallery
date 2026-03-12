@@ -50,12 +50,12 @@
 // }
 
 import Gallery from "./components/Gallery";
-import UploadForm from "./components/UploadForm";
-import { useState } from "react";
+// import UploadForm from "./components/UploadForm";
+// import { useState } from "react";
 import "./App.css";
 
 export default function App() {
-    const [refresh, setRefresh] = useState(0);
+    // const [refresh, setRefresh] = useState(0);
 
     // return (
     //     <div className="container">
@@ -78,7 +78,9 @@ export default function App() {
                 <div className="hero-side">
                     <h2>Upload</h2>
                     <p>Store, view, and delete your uploaded photos.</p>
-                    <UploadForm onUpload={() => setRefresh((r) => r + 1)} />
+                    {/*<UploadForm onUpload={() => setPhotos(prev => [newPhoto, ...prev])} />*/}
+
+                    {/*<UploadForm onUpload={() => setRefresh((r) => r + 1)} />*/}
                 </div>
             </header>
 
@@ -86,7 +88,7 @@ export default function App() {
                 <h2>Gallery</h2>
             </section>
 
-            <Gallery key={refresh} />
+            <Gallery />
         </div>
     );
 }

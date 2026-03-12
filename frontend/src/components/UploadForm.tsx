@@ -32,22 +32,22 @@
 import { useState } from "react";
 import { uploadPhoto } from "../services/api";
 
-export default function UploadForm({ onUpload }: { onUpload: () => void }) {
+export default function UploadForm({ onUpload }: { onUpload: (photo: any) => void }) {
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState("");
 
     async function handleSubmit(e: React.SubmitEvent) {
         e.preventDefault();
         if (!file) {
-            setError("Please choose a file");
+            setError("Please choose a file!");
             return;
         }
 
         try {
             setError("");
-            await uploadPhoto(file);
+            const newPhoto = await uploadPhoto(file);
             setFile(null);
-            onUpload();
+            onUpload(newPhoto);
         } catch (err) {
             if (err instanceof Error) {
                 setError(err.message);
@@ -67,7 +67,9 @@ export default function UploadForm({ onUpload }: { onUpload: () => void }) {
                     if (e.target.files) setFile(e.target.files[0]);
                 }}
             />
-            <button type="submit">Upload</button>
+            <button type="submit" className="upload-button">
+                Upload
+            </button>
             {error && <p>{error}</p>}
         </form>
     );

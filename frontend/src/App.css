@@ -138,15 +138,20 @@ body {
 .upload-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.upload-form input,
-.upload-form button {
+.upload-form input {
+  /*margin-top: /10px;*/
+}
+
+.upload-button {
   font-size: 16px;
+  margin-top: 8px;
+  width: fit-content;
 }
 
-.upload-form button,
+.upload-button,
 .photo-meta button {
   background: #111;
   color: white;
@@ -155,7 +160,7 @@ body {
   cursor: pointer;
 }
 
-.upload-form button:hover,
+.upload-button:hover,
 .photo-meta button:hover {
   opacity: 0.85;
 }

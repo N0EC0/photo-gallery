@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Photo } from "../models/Photo";
 
 export async function uploadPhoto(req: Request, res: Response) {
-    console.log(req.file);
+    // console.log(req.file);
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
     }
@@ -16,7 +16,12 @@ export async function uploadPhoto(req: Request, res: Response) {
         uploadDate: new Date(),
     });
 
-    res.status(201).json(created);
+    res.status(201).json({
+        _id: created._id,
+        filename: created.filename,
+        uploadDate: created.uploadDate,
+        imageUrl:`data:${created.mimeType};base64,${created.imageBase64}`,
+    });
 }
 
 export async function getPhotos(req: Request, res: Response) {
