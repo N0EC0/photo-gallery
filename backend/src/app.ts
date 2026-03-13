@@ -5,14 +5,14 @@ import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
 
+// Allow requests from the local Vite dev server
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
-app.get("/test", (req, res) => res.json({ message: "Backend is working ✅" }));
-
+// Photo API routes
 app.use("/api/photos", photoRoutes);
 
-// last middleware
+// Error handling must be last
 app.use(errorHandler);
 
 export default app;

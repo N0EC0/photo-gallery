@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
+// Express error-handling middleware that normalizes API error responses
 export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
     const msg = err?.message || "Server error";
 

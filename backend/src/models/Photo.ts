@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 
+// Mongoose schema for uploaded photos stored as base64 + metadata
 export interface PhotoDoc {
     filename: string;
     imageBase64: string;
