@@ -1,40 +1,10 @@
-// import { useState } from "react";
-// import { uploadPhoto } from "../services/api";
-//
-// export default function UploadForm({ onUpload }: { onUpload: () => void }) {
-//     const [file, setFile] = useState<File | null>(null);
-//
-//     async function handleSubmit(e: React.FormEvent) {
-//         e.preventDefault();
-//         if (!file) return;
-//
-//         await uploadPhoto(file);
-//         setFile(null);
-//         onUpload();
-//     }
-//
-//     return (
-//         <form onSubmit={handleSubmit} className="upload-form">
-//             <input
-//                 type="file"
-//                 accept="image/png,image/jpeg"
-//                 onChange={(e) => {
-//                     if (e.target.files) setFile(e.target.files[0]);
-//                 }}
-//             />
-//
-//             <button type="submit">Upload</button>
-//         </form>
-//     );
-// }
-
-
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { uploadPhoto } from "../services/api";
 
 export default function UploadForm({ onUpload }: { onUpload: (photo: any) => void }) {
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState("");
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     async function handleSubmit(e: React.SubmitEvent) {
         e.preventDefault();
@@ -58,19 +28,34 @@ export default function UploadForm({ onUpload }: { onUpload: (photo: any) => voi
     }
 
     return (
-        <form onSubmit={handleSubmit} className="upload-form">
-            <input
-                type="file"
-                accept="image/png,image/jpeg,image/jpg"
-                onChange={(e) => {
-                    setError("");
-                    if (e.target.files) setFile(e.target.files[0]);
-                }}
-            />
-            <button type="submit" className="upload-button">
-                Upload
-            </button>
-            {error && <p>{error}</p>}
-        </form>
+        <>
+            <form onSubmit={handleSubmit} className="upload-form">
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg"
+                    className="hidden-file-input"
+                    onChange={(e) => {
+                        setError("");
+                        if (e.target.files) setFile(e.target.files[0]);
+                    }}
+                />
+
+                <button
+                    type="button"
+                    className="upload-button"
+                    onClick={() => fileInputRef.current?.click()}
+                >
+                    Choose File
+                </button>
+
+                <button type="submit" className="upload-button">
+                    Upload
+                </button>
+
+                {file && <p className="selected-file">{file.name}</p>}
+                {error && <p>{error}</p>}
+            </form>
+        </>
     );
 }

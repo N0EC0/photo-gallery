@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { Photo } from "../models/Photo";
 
 export async function uploadPhoto(req: Request, res: Response) {
-    // console.log(req.file);
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
     }

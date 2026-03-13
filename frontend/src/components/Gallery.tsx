@@ -11,7 +11,6 @@ export default function Gallery() {
         const data = await fetchPhotos();
         setPhotos(data);
     }
-
     useEffect(() => {
         loadPhotos();
     }, []);
@@ -19,7 +18,6 @@ export default function Gallery() {
     async function handleDelete(id: string) {
         await deletePhoto(id);
         setPhotos((prev) => prev.filter((p) => p._id !== id));
-        // setPhotos(photos.filter((p) => p._id !== id));
     }
 
     function handleUpload(newPhoto: Photo) {
@@ -27,7 +25,6 @@ export default function Gallery() {
     }
 
     return (
-
         <>
             <UploadForm onUpload={handleUpload} />
 
@@ -46,7 +43,5 @@ export default function Gallery() {
                 </div>
                 )}
         </>
-
-
     );
 }

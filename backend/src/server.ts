@@ -18,6 +18,6 @@ async function start() {
 }
 
 start().catch((err) => {
-    console.error("❌ Startup error:", err);
+    console.error("Startup error:", err);
     process.exit(1);
 });
