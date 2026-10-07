@@ -1,6 +1,9 @@
 # SOEN 487 - A2
 Noemie Corneillier - 40284815
 
+Description: 
+Small picture gallery desktop application to understand MongoDB + backend API implementations
+
 ## 1) Backend setup
 
 From the project folder "a2":
@@ -13,7 +16,7 @@ npm install
 Create `backend/.env`:
 
 ```bash
-MONGODB_URI=mongodb://127.0.0.1:27017/a2
+MONGODB_URI="YOUR URI"
 PORT=3001
 ```
 
@@ -47,4 +50,4 @@ Frontend will run on:
 - The frontend is hardcoded to call the backend at `http://localhost:3001/api`
   (see `frontend/src/services/api.ts`).
 - The backend CORS config allows `http://localhost:5173` (Vite dev server).
-- Uploaded images are stored in MongoDB as base64 and returned to the frontend as a `data:` URL.
+- Uploaded images are stored in MongoDB as base64 and returned to the frontend as a `data:` URL. (Database is not maintained and probably inactive)
